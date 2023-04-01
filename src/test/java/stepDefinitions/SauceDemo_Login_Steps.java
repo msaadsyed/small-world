@@ -5,6 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import main.MainCalls;
+import org.example.Main;
 import org.testng.Assert;
 
 public class SauceDemo_Login_Steps{
@@ -37,6 +38,9 @@ public class SauceDemo_Login_Steps{
     public void VerifyProductListingIsVisible() {
         Assert.assertEquals(MainCalls.getSd_DashboardPO().IsInventoryItemsVisible(),true,"Inventory Listing Is not Available.");
     }
-
+    @Then("Error Message {string} should be visible")
+    public void WrongCredentialsMessageShouldBeVisible(String message) {
+        MainCalls.getSd_LoginPO().verifyWrongCredentialsMessage(message);
+    }
 }
 

@@ -15,6 +15,8 @@ public class Saucedemo_Login_PO extends Base_PO{
 
     private @FindBy(className = "login_logo") WebElement login_Text;
 
+    private  @FindBy(css = "h3[data-test='error']") WebElement wrong_Credentials;
+
     public void navigateTo_SauceDemo_Website(){
         navigateTo_URL(GlobalVars.BASE_URL);
     }
@@ -33,5 +35,9 @@ public class Saucedemo_Login_PO extends Base_PO{
 
     public void verifyHeaderText(String headText){
         waitForElement_And_ValidateText(login_Text,headText);
+    }
+
+    public void verifyWrongCredentialsMessage(String message){
+        waitForElement_And_ValidateText(wrong_Credentials,message);
     }
 }
