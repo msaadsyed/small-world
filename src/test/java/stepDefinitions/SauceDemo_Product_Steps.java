@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import main.MainCalls;
@@ -53,5 +54,19 @@ public class SauceDemo_Product_Steps {
     @Then("Product {string} should present with description")
     public void productShouldBePresentWithDescription(String productName) {
         MainCalls.getSd_product_PO().verifyProductOnMyCart(productName);
+    }
+
+    @When("Sam clicks on {string} button")
+    public void clickOnActionButton(String buttonName){
+        MainCalls.getSd_product_PO().clickActionButton(buttonName);
+    }
+    @Given("fill user information first name {string} last name {string} zip code {string}")
+    public void fillCheckOutDetails(String firstName, String lastName, String zipCode){
+        MainCalls.getSd_product_PO().fillCheckOutDetails(firstName,lastName,zipCode);
+    }
+
+    @Then("{string} success message should be visible")
+    public void verifySuccessMessageAfterFinish(String successMessage){
+        MainCalls.getSd_product_PO().verifySuccessOrderMessage(successMessage);
     }
 }

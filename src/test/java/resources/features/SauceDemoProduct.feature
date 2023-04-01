@@ -8,7 +8,7 @@ Feature: Verification of Sauce demo website's product filtering, add to cart che
     Then  Login should be successful
     And   Product listing should be visible
 
-    @product
+    @product,@smoke
   Scenario: verify sam is able to filter, add to cart checkout and logout to website
     When sam filter the product from "Price (low to high)"
     Then filter should be applied with "Sauce Labs Onesie" on top
@@ -20,4 +20,14 @@ Feature: Verification of Sauce demo website's product filtering, add to cart che
     And  Click on cart icon
     Then "Your Cart" page should be open
     And  Product "Sauce Labs Backpack" should present with description
+    When Sam clicks on "checkout" button
+    Then "Checkout: Your Information" page should be open
+    And  fill user information first name "Syed" last name "Saad" zip code "74500"
+
+    When Sam clicks on "continue" button
+    Then "Checkout: Overview" page should be open
+    And  Product "Sauce Labs Backpack" should present with description
+
+    When Sam clicks on "finish" button
+    Then "Thank you for your order!" success message should be visible
 
