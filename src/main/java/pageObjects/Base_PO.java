@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utils.GlobalVars;
@@ -19,6 +20,7 @@ public class Base_PO {
         //  CONSTRUCTOR Logic here
         PageFactory.initElements(getDriver(), this);
     }
+    protected By inventory_title =new  By.ByClassName("inventory_item_name");
 
     protected WebDriver getDriver() {
         return DriverFactory.getDriver();
@@ -51,9 +53,21 @@ public class Base_PO {
         WebDriverWait wait = new WebDriverWait(getDriver(), GlobalVars.WEBDRIVER_DEFAULT_EXPLICIT_TIMEOUT);
         String actualText = wait.until(ExpectedConditions.visibilityOf(element)).getText();
 
-        Assert.assertEquals(actualText, text);
+        Assert.assertEquals(actualText, text,text+" is not visible");
     }
 
+    protected  void waitForElement_And_ValidateText (By selector, String text){
+        WebDriverWait wait = new WebDriverWait(getDriver(), GlobalVars.WEBDRIVER_DEFAULT_EXPLICIT_TIMEOUT);
+        String actualText = wait.until(ExpectedConditions.elementToBeClickable(selector)).getText();
 
+        Assert.assertEquals(actualText, text,text+" is not visible");
+    }
+
+    protected void waitForSelectElement_And_SelectByName(WebElement element, String selectName){
+        WebDriverWait wait = new WebDriverWait(getDriver(), GlobalVars.WEBDRIVER_DEFAULT_EXPLICIT_TIMEOUT);
+
+        Select select = new Select(wait.until(ExpectedConditions.visibilityOf(element)));
+        select.selectByVisibleText(selectName);
+    }
 
 }

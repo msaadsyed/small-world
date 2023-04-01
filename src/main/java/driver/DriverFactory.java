@@ -1,7 +1,6 @@
 package driver;
 
 import main.MainCalls;
-import org.example.Main;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
